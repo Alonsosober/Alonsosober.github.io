@@ -19,21 +19,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="消除左递归的原因  自顶向下分析的递归下降分析基本思想是将每个非终结符定义为一个函数，调用该函数时会尝试逐步匹配输入串的内容，是一个递归调用的过程 例: \(S \to AB \\ A \to a|\epsilon\\B\to b|\epsilon\) 12345678910111213141516171819void S() &#123;    A();  &#x2F;&#x2F; 解析 A    B();  &#x2F;&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2024/08/13/hello-world/index.html">
+<meta property="og:title" content="消除左递归">
+<meta property="og:url" content="http://example.com/2024/10/09/%E6%B6%88%E9%99%A4%E5%B7%A6%E9%80%92%E5%BD%92/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="消除左递归的原因  自顶向下分析的递归下降分析基本思想是将每个非终结符定义为一个函数，调用该函数时会尝试逐步匹配输入串的内容，是一个递归调用的过程 例: \(S \to AB \\ A \to a|\epsilon\\B\to b|\epsilon\) 12345678910111213141516171819void S() &#123;    A();  &#x2F;&#x2F; 解析 A    B();  &#x2F;&#x2F;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-13T03:33:37.973Z">
-<meta property="article:modified_time" content="2024-08-13T03:33:37.973Z">
+<meta property="article:published_time" content="2024-10-09T14:24:52.595Z">
+<meta property="article:modified_time" content="2024-10-09T16:17:11.466Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hello World - Hexo</title>
+  <title>消除左递归 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="消除左递归"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-13 11:33" pubdate>
-          August 13, 2024 am
+        <time datetime="2024-10-09 22:24" pubdate>
+          October 9, 2024 pm
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18 words
+          557 words
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          1 mins
+          5 mins
         
       </span>
     
@@ -270,24 +270,67 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hello World</h1>
+            <h1 id="seo-header">消除左递归</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h3 id="消除左递归的原因">消除左递归的原因</h3>
+<blockquote>
+<p>自顶向下分析的递归下降分析基本思想是将每个非终结符定义为一个函数，调用该函数时会尝试逐步匹配输入串的内容，是一个递归调用的过程</p>
+<p>例:</p>
+<p><span class="math inline">\(S \to AB \\ A \to a|\epsilon\\B\to b|\epsilon\)</span></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">S</span><span class="hljs-params">()</span> &#123;<br>    A();  <span class="hljs-comment">// 解析 A</span><br>    B();  <span class="hljs-comment">// 解析 B</span><br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">A</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">if</span> (lookahead == <span class="hljs-string">&#x27;a&#x27;</span>) &#123;  <span class="hljs-comment">// 如果下一个字符是 &#x27;a&#x27;</span><br>        match(<span class="hljs-string">&#x27;a&#x27;</span>);          <span class="hljs-comment">// 匹配 &#x27;a&#x27;</span><br>    &#125;<br>    <span class="hljs-comment">// 否则 A 推导为空，什么都不做（对应于 A -&gt; epsilon）</span><br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">B</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">if</span> (lookahead == <span class="hljs-string">&#x27;b&#x27;</span>) &#123;  <span class="hljs-comment">// 如果下一个字符是 &#x27;b&#x27;</span><br>        match(<span class="hljs-string">&#x27;b&#x27;</span>);          <span class="hljs-comment">// 匹配 &#x27;b&#x27;</span><br>    &#125;<br>    <span class="hljs-comment">// 否则 B 推导为空，什么都不做（对应于 B -&gt; epsilon）</span><br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>如果有左递归文法，则会无限递归调用某个函数，无法正常解析</p>
+</blockquote>
+<h3 id="消除立即左递归">消除立即左递归</h3>
+<p><span class="math inline">\(A \to A\alpha_1 | A\alpha_2 |...| A\alpha_m|\beta_1|\beta_2|...|\beta_n\)</span></p>
+<p><em>可以直接根据最终推导出的串来理解，比较简单</em></p>
+<p><span class="math inline">\(A \to \beta_1A&#39; | \beta_2A&#39;|...|\beta_3A&#39;\)</span></p>
+<p><span class="math inline">\(A&#39; \to \alpha_1A&#39;|\alpha_2A&#39;|...|\alpha_mA&#39;|\epsilon\)</span></p>
+<p><em>多步同理，只需保证不会产生多步左递归</em></p>
+<blockquote>
+<p><span class="math inline">\(E \to E+T|T \\ T \to T*F|F \\ F \to(E)|id\)</span></p>
+<p>转换</p>
+<p><span class="math inline">\(E \to TE&#39; \\ E&#39; \to +TE&#39;|\epsilon \\ T \to FT&#39; \\ T&#39; \to * FT&#39; | \epsilon \\ F \to (E)|id\)</span></p>
+</blockquote>
+<h3 id="消除多步左递归">消除多步左递归</h3>
+<p>多步推导可能产生左递归</p>
+<blockquote>
+<p><span class="math inline">\(S \to Aa|b, \ A \to Ac |Sd | \epsilon\)</span></p>
+</blockquote>
+<p>消除算法</p>
+<ul>
+<li><p>输入：无环：不存在<span class="math inline">\(A_i \Rightarrow^{+} A_i\)</span></p></li>
+<li><p>输出：等价的无左递归的文法</p></li>
+<li><p>原理:</p>
+<ul>
+<li>给非终结符排序，<span class="math inline">\(A_1,A_2,...,A_n\)</span></li>
+<li>如果只有<span class="math inline">\(A_i \Rightarrow A_j(i&lt;j),不会有左递归\)</span></li>
+<li>如果发现<span class="math inline">\(A_i \Rightarrow A_j (i&gt;j)\)</span>,代入<span class="math inline">\(A_j\)</span>的产生式,若替换后有<span class="math inline">\(A_i\)</span>的直接左递归，再消除</li>
+</ul></li>
+<li><p>应用：</p>
+<p>将文法的非终结符号任意排序位<span class="math inline">\(A_1,A_2,...,A_{n}\)</span></p>
+<p>for i = 1 to n do{</p>
+<p>​ for j = 1 to i = 1 do{</p>
+<p>​ <span class="math inline">\(将形如A_{i} \to A_j\gamma的产生式替换为A_i \to \delta_1\gamma|\delta_2\gamma|...|\delta_k\gamma\)</span></p>
+<p>​ <span class="math inline">\(其中A_j \to \delta_1|\delta_2|...|\delta_k是以A_j为左部的所有产生式;\)</span></p>
+<p>​ }</p>
+<p>​ 消除<span class="math inline">\(A_i\)</span>的立即左递归</p>
+<p>}</p></li>
+</ul>
+<blockquote>
+<p>例：</p>
+<p><span class="math inline">\(S \to Aa|b, \ A \to Ac |Sd | \epsilon\)</span></p>
+<p>排序：<span class="math inline">\(S\ A\)</span></p>
+<p>替换：</p>
+<ul>
+<li><span class="math inline">\(i = 1,没有处理\)</span></li>
+<li><span class="math inline">\(i = 2,替换A \to Sd 中的S，得到A \to Ac|Aad|bd|\epsilon\)</span></li>
+</ul>
+<p>消除立即左递归：</p>
+<p><span class="math inline">\(S \to Aa|b \\ A \to bdA&#39; |A&#39; \\ A&#39; \to cA&#39; | ad A&#39; | \epsilon\)</span></p>
+</blockquote>
 
                 
               </div>
@@ -305,8 +348,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://example.com/2024/08/13/hello-world/</div>
+      <div>消除左递归</div>
+      <div>http://example.com/2024/10/09/消除左递归/</div>
     </div>
     <div class="license-meta">
       
@@ -318,7 +361,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 13, 2024</div>
+          <div>October 9, 2024</div>
         </div>
       
       
@@ -353,6 +396,12 @@
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2024/08/13/two%20envelops/" title="两个信封之谜">
+                        <span class="hidden-mobile">两个信封之谜</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
@@ -406,6 +455,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -598,6 +653,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
